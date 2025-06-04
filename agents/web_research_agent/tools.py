@@ -1,11 +1,21 @@
-def fetch_mock_articles(company_name: str) -> list[dict]:
+def fetch_mock_articles(company_name: str) -> dict:
     """
-    This function simulates the Tool layer for the agent using dependency injection.
+    Simulates news article retrieval. Returns a JSON-RPC 2.0 response object.
     """
-    return [
-        {"title": f"{company_name} announces new AI initiative", "date": "2025-06-01"},
-        {
-            "title": f"{company_name} Q2 earnings exceed expectations",
-            "date": "2025-06-03",
+    return {
+        "jsonrpc": "2.0",
+        "result": {
+            "company_name": company_name,
+            "articles": [
+                {
+                    "title": f"{company_name} announces new AI initiative",
+                    "date": "2025-06-01",
+                },
+                {
+                    "title": f"{company_name} Q2 earnings exceed expectations",
+                    "date": "2025-06-03",
+                },
+            ],
         },
-    ]
+        "id": "mock-id",
+    }
