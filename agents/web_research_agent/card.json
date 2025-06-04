@@ -1,0 +1,25 @@
+{
+  "name": "Web Research Agent",
+  "description": "Retrieves recent news articles related to companies.",
+  "url": "local://web-research",
+  "version": "1.0.0",
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "skills": [
+    {
+      "id": "get_company_news",
+      "name": "Get Company News",
+      "description": "Fetches recent news articles and press coverage related to a specified company.",
+      "tags": ["news", "web", "company", "research"],
+      "examples": [
+        "Get recent news about Acme Inc.",
+        "Find articles mentioning BoltAI."
+      ]
+    }
+  ]
+}

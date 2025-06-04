@@ -1,0 +1,25 @@
+{
+  "name": "CRM Research Agent",
+  "description": "Fetches CRM interaction history for a given contact.",
+  "url": "local://crm-research",
+  "version": "1.0.0",
+  "defaultInputModes": ["application/json"],
+  "defaultOutputModes": ["application/json"],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "skills": [
+    {
+      "id": "get_crm_history",
+      "name": "Get CRM History",
+      "description": "Retrieves CRM activity and communication logs for a specified contact name.",
+      "tags": ["crm", "contact", "history", "customer"],
+      "examples": [
+        "Show all interactions with John Doe.",
+        "Pull CRM history for Jane Smith."
+      ]
+    }
+  ]
+}
