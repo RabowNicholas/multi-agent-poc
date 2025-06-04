@@ -70,6 +70,7 @@ PYTHONPATH=. pytest
 - Agent discovery is file-based via a local AgentCard registry — no network discovery.
 - The `id` field in tool responses is internally generated and static (not tied to real request IDs).
 - All tool responses are mocked and do not hit real APIs or services.
+- The "aggregate response" returned by the Supervisor Agent refers to a combined list of raw agent responses (in JSON-RPC format), not a synthesized or natural language user-facing answer.
 
 ## Limitations
 
