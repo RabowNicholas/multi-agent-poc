@@ -1,6 +1,6 @@
 # Multi-Agent PoC: A2A + MCP
 
-This is a minimal proof-of-concept multi-agent system demonstrating core functionality using the [Agent-to-Agent (A2A)](https://google-a2a.github.io/A2A/specification/) and [Model Context Protocol (MCP)] standards. Built for evaluation by the CTO and engineering team.
+This is a minimal proof-of-concept multi-agent system demonstrating core functionality using the [Agent-to-Agent (A2A)](https://google-a2a.github.io/A2A/specification/) and Model Context Protocol (MCP) standards. Built for evaluation by the CTO and engineering team.
 
 ## Scenario & Purpose
 
