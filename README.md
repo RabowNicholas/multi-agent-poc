@@ -63,6 +63,14 @@ PYTHONPATH=. pytest
 - Web/CRM agent output via tool layers
 - Query parsing logic
 
+## Assumptions
+
+- All agent input follows the JSON-RPC 2.0 spec and uses `application/json` as the input/output mode.
+- Query parsing is restricted to a known format and does not use real NLP.
+- Agent discovery is file-based via a local AgentCard registry — no network discovery.
+- The `id` field in tool responses is internally generated and static (not tied to real request IDs).
+- All tool responses are mocked and do not hit real APIs or services.
+
 ## Limitations
 
 - Query parsing is fragile — works only for simple, known phrasing
