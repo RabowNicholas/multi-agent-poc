@@ -30,7 +30,7 @@ def mock_agent():
 @pytest.fixture
 def registry_with_mock_agent(mock_agent):
     """Agent Registry with Mock Agent for testing"""
-    registry = AgentRegistry(agent_card_paths=[])
+    registry = AgentRegistry.from_card_paths([])
     registry.find_agent_for_method = MagicMock(return_value=mock_agent)
     return registry
 
@@ -69,7 +69,7 @@ async def test_delegate_task_timeout():
             await asyncio.sleep(5)
 
     slow_agent = SlowAgent()
-    registry = AgentRegistry(agent_card_paths=[])
+    registry = AgentRegistry.from_card_paths([])
     registry.find_agent_for_method = MagicMock(return_value=slow_agent)
     sa = SupervisorAgent(agent_registry=registry)
 
@@ -89,7 +89,7 @@ async def test_delegate_task_timeout():
 @pytest.mark.asyncio
 async def test_delegate_task_invalid_method():
     """Returns method not found error for unknown task."""
-    registry = AgentRegistry(agent_card_paths=[])
+    registry = AgentRegistry.from_card_paths([])
     registry.find_agent_for_method = MagicMock(return_value=None)
     sa = SupervisorAgent(agent_registry=registry)
 
