@@ -1,11 +1,14 @@
 import importlib
 import json
-import os
+from typing import List
 
 from protocol.base_agent import BaseAgent
 
 # Map agent identifiers to fully qualified class paths
-AGENT_CLASS_REGISTRY = {}  # TODO: add to registry
+AGENT_CLASS_REGISTRY = {
+    "web-research-agent": "agents.web_research_agent.agent.WebResearchAgent",
+    "crm-research-agent": "agents.crm_research_agent.agent.CRMResearchAgent",
+}
 
 
 def load_class_from_path(dotted_path: str):
@@ -17,23 +20,21 @@ def load_class_from_path(dotted_path: str):
     return getattr(module, class_name)
 
 
-def extract_agent_id(path: str) -> str:
-    """
-    Extract agent ID slug from card path.
-    """
-    folder_name = os.path.basename(os.path.dirname(path))
-    return folder_name.replace("_agent", "").replace("_", "-")
-
-
 class AgentRegistry:
     """
     Loads agent cards and maps skill IDs to agent instances, simulating agent discovery as described in the A2A (Agent-to-Agent) specification.
     For local development, this enables deterministic resolution of agent skills without requiring distributed infrastructure.
     """
 
-    def __init__(self, agent_card_paths: list[str]):
-        self.skill_map = {}  # TODO: add method_name → agent_instance
-        self.load_agents(agent_card_paths)
+    def __init__(self):
+        self.skill_map = {}  # method_name → agent_instance
+
+    @classmethod
+    def from_card_paths(cls, paths: List[str]) -> "AgentRegistry":
+        registry = cls()
+        registry.skill_map = {}
+        registry.load_agents(paths)
+        return registry
 
     def load_agents(self, paths: list[str]):
         """
@@ -43,11 +44,11 @@ class AgentRegistry:
             with open(path, "r") as f:
                 card = json.load(f)
 
-            agent_id = extract_agent_id(path)
+            agent_name = card.get("name", "").lower().replace(" ", "-")
 
-            class_path = AGENT_CLASS_REGISTRY.get(agent_id)
+            class_path = AGENT_CLASS_REGISTRY.get(agent_name)
             if not class_path:
-                print(f"No class registered for agent: {agent_id}")
+                print(f"No class registered for agent: {agent_name}")
                 continue
 
             AgentClass = load_class_from_path(class_path)
