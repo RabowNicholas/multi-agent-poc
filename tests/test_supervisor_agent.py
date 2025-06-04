@@ -8,7 +8,7 @@ timeout handling, and error responses when no agent is found.
 from unittest.mock import MagicMock
 import asyncio
 import pytest
-from supervisor_agent import SupervisorAgent
+from agents.supervisor_agent import SupervisorAgent
 from agent_registry import AgentRegistry
 
 
